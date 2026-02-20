@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+
+:root {
+  --navy: #0F2854;
+  --blue: #1C4D8D;
+  --accent: #4988C4;
+  --soft: #BDE8F5;
+  --font-base: 14px;
+  --text-dark: #0F2854;
+  --text-light: #ffffff;
+}
+
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: var(--font-base);
+  color: var(--navy);
+}
+
+
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}

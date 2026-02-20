@@ -1,0 +1,177 @@
+.projects-page {
+  padding: 20px 24px;
+}
+.project-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.project-select-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.project-select-wrap label {
+  font-size: 12px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.project-select-wrap select {
+  width: 260px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.project-select-wrap select:focus {
+  outline: none;
+  border-color: #1e40af;
+  box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.12);
+}
+
+.project-selector .primary-btn {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+
+/* =========================
+   Assignment layout
+   ========================= */
+
+.assignment-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+
+/* Employee containers */
+.assignment-columns > div {
+  background: #f8fafc;          
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+
+/* Column headers */
+.assignment-columns h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  background: #f1f5f9;
+  padding: 10px 12px;
+  margin: -16px -16px 12px -16px;
+  border-bottom: 1px solid #e2e8f0;
+  border-radius: 10px 10px 0 0;
+}
+
+
+/* =========================
+   Employee rows
+   ========================= */
+
+.emp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 6px;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.emp-row:not(:last-child) {
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+
+/* =========================
+   Action buttons (+ / -)
+   ========================= */
+
+.emp-row button {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.emp-row button:hover {
+  background: #f1f5f9;
+}
+
+/* remove */
+.emp-row .danger {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+.emp-row .danger:hover {
+  background: #fecaca;
+}
+
+.danger-btn {
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+
+  border-radius: 8px;
+  border: none;
+
+  background: #fee2e2;
+  color: #b91c1c;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.danger-btn:hover {
+  background: #fecaca;
+}
+
+
+/* =========================
+   Section titles
+   ========================= */
+
+.assignment-panel h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f2a56;
+}
+
+/* Placeholder text */
+.placeholder {
+  text-align: center;
+  color: #64748b;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+.multi-select {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+}
+
+.multi-select option {
+  padding: 6px;
+}

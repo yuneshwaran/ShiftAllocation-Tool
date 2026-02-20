@@ -1,0 +1,185 @@
+CREATE SCHEMA shiftroster;
+
+CREATE TABLE shiftroster.user_auth 
+(
+    usr_id INT PRIMARY KEY auto_increment,
+    usr_name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    passhash VARCHAR(255) NOT NULL,
+    lastupdated TIMESTAMP default CURRENT_TIMESTAMP,
+    otp_code VARCHAR(10),
+    otp_expiry DATETIME
+);
+
+CREATE TABLE shiftroster.project_lead (
+    lead_id       INTEGER PRIMARY KEY,
+    lead_name     VARCHAR(50) NOT NULL,
+    user_id       INTEGER NOT NULL,
+    last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_project_lead_user
+        FOREIGN KEY (user_id)
+        REFERENCES shiftroster.user_auth (usr_id)
+);
+
+CREATE TABLE shiftroster.employee (
+    emp_id         INTEGER PRIMARY KEY,
+    name           VARCHAR(50) NOT NULL,
+    is_experienced BOOLEAN DEFAULT FALSE,
+    reporting_to   INTEGER,
+    last_updated   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_employee_lead
+        FOREIGN KEY (reporting_to)
+        REFERENCES shiftroster.project_lead (lead_id)
+);
+
+CREATE TABLE shiftroster.project (
+    project_id        INTEGER PRIMARY KEY,
+    name              VARCHAR(100) NOT NULL,
+    lead_id           INTEGER,
+    weekend_allowance INTEGER DEFAULT 0,
+    last_updated      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_project_lead
+        FOREIGN KEY (lead_id)
+        REFERENCES shiftroster.project_lead (lead_id)
+);
+
+CREATE TABLE shiftroster.shift_master (
+    shift_id    INTEGER PRIMARY KEY,
+    shift_name  VARCHAR(10) NOT NULL,
+    start_time TIME,
+    end_time TIME
+);
+
+ALTER TABLE shiftroster.shift_master
+ADD start_time TIME,
+ADD end_time TIME;
+
+
+CREATE TABLE shiftroster.project_employee (
+    id            INTEGER PRIMARY KEY,
+    project_id    INTEGER NOT NULL,
+    emp_id        INTEGER NOT NULL,
+    last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_pe_project
+        FOREIGN KEY (project_id)
+        REFERENCES shiftroster.project (project_id),
+
+    CONSTRAINT fk_pe_employee
+        FOREIGN KEY (emp_id)
+        REFERENCES shiftroster.employee (emp_id),
+
+    CONSTRAINT uq_project_employee
+        UNIQUE (project_id, emp_id)
+);
+
+CREATE TABLE shiftroster.shift_allocation (
+    allocation_id INTEGER PRIMARY KEY,
+    emp_id        INTEGER NOT NULL,
+    project_id    INTEGER NOT NULL,
+    shift_id      INTEGER NOT NULL,
+    shift_date    DATE NOT NULL,
+    last_updated  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_sa_employee
+        FOREIGN KEY (emp_id)
+        REFERENCES shiftroster.employee (emp_id),
+
+    CONSTRAINT fk_sa_project
+        FOREIGN KEY (project_id)
+        REFERENCES shiftroster.project (project_id),
+
+    CONSTRAINT fk_sa_shift
+        FOREIGN KEY (shift_id)
+        REFERENCES shiftroster.shift_master (shift_id),
+
+    CONSTRAINT uq_employee_shift_day
+        UNIQUE (emp_id, shift_id, shift_date)
+);
+
+CREATE INDEX idx_sa_shift_date
+ON shiftroster.shift_allocation (shift_date);
+
+CREATE INDEX idx_sa_emp
+ON shiftroster.shift_allocation (emp_id);
+
+CREATE INDEX idx_pe_project_emp
+ON shiftroster.project_employee (project_id, emp_id);
+
+
+
+#DML
+
+INSERT INTO shiftroster.shift_master 
+VALUES
+(1,'Morning', '06:00', '14:00'),
+(2, 'Evening', '14:00', '22:00'),
+(3, 'Night'  ,  '22:00', '06:00');
+select * from shiftroster.user_auth;
+
+INSERT INTO shiftroster.project_lead (lead_id, lead_name, user_id)
+VALUES
+(700, 'Meenakshi', 700),
+(600, 'Sreeram', 600);
+
+INSERT INTO shiftroster.project (project_id, name, lead_id, weekend_allowance)
+VALUES
+(1, 'SPARK', 600, 500),
+(2, 'INTERNAL', 700, 500);
+
+INSERT INTO shiftroster.employee (emp_id, name, is_experienced, reporting_to)
+VALUES
+(601, 'Sandhiya', 1, 600),
+(602, 'Swetha', 0, 600),
+(603, 'Thiyagesh', 0, 600),
+(604, 'Yuvan', 1, 600),
+(605, 'Yuneshwaran', 0, 700),
+(606, 'Jenifer', 1, 700),
+(607, 'Bhargavi', 0, 700),
+(608, 'Praneesha', 1, 700);
+
+INSERT INTO shiftroster.project_employee (id, project_id, emp_id)
+VALUES
+(1, 1, 601),
+(2, 1, 602),
+(3, 1, 603),
+(4, 1, 604),
+(5, 2, 605),
+(6, 2, 606),
+(7, 2, 607),
+(8, 2, 608),
+(9, 2, 604);
+
+INSERT INTO shiftroster.shift_allocation
+(allocation_id, emp_id, project_id, shift_id, shift_date)
+VALUES
+-- ================= DAY 1 : 2025-01-01 =================
+(1, 601, 1, 1, '2025-01-01'),
+(2, 602, 1, 1, '2025-01-01'),
+(3, 601, 1, 2, '2025-01-01'),
+(4, 602, 1, 2, '2025-01-01'),
+(5, 601, 1, 3, '2025-01-01'),
+(6, 602, 1, 3, '2025-01-01'),
+
+
+-- ================= DAY 2 : 2025-01-02 =================
+(7, 603, 1, 1, '2025-01-02'),
+(8, 604, 1, 1, '2025-01-02'),
+(9, 603, 1, 2, '2025-01-02'),
+(10, 604, 1, 2, '2025-01-02'),
+(11, 603, 1, 3, '2025-01-02'),
+(12, 604, 1, 3, '2025-01-02'),
+
+-- ================= DAY 3 : 2025-01-03 =================
+(13, 601, 1, 1, '2025-01-03'),
+(14, 602, 1, 1, '2025-01-03'),
+(15, 601, 1, 2, '2025-01-03'),
+(16, 602, 1, 2, '2025-01-03'),
+(17, 601, 1, 3, '2025-01-03'),
+(18, 602, 1, 3, '2025-01-03');
+
+
+

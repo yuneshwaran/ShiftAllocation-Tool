@@ -1,0 +1,117 @@
+/* ------------------------------
+   Shifts panel layout
+------------------------------ */
+
+.shifts-panel {
+  padding: 16px;
+}
+
+.shifts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.shifts-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* ------------------------------
+   Shifts table
+------------------------------ */
+
+.shifts-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.shifts-table th,
+.shifts-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.shifts-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.shifts-table tr:hover {
+  background: #f9fafb;
+}
+
+.shift-code {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.shift-time {
+  font-family: monospace;
+  font-size: 13px;
+}
+
+.allowance {
+  font-weight: 500;
+}
+
+.allowance.weekend {
+  color: #b45309;
+}
+
+.allowance.weekday {
+  color: #065f46;
+}
+
+/* ------------------------------
+   Modal helpers
+------------------------------ */
+
+.time-row,
+.allowance-row {
+  display: flex;
+  gap: 12px;
+}
+
+.time-row > div,
+.allowance-row > div {
+  flex: 1;
+}
+
+.modal-hint {
+  font-size: 12px;
+  color: #ff0000;
+  margin-top: 6px;
+  align-self: center;
+}
+
+.modal-hint- {
+  font-size: 12px;
+  color: #ff0000;
+  margin-top: 6px;
+  align-self: center;
+}
+
+
+.shift-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.shift-actions button {
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+.shift-actions .edit {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.shift-actions .edit:hover {
+  background: #bae6fd;
+}

@@ -1,0 +1,39 @@
+.manage-page {
+  display: flex;
+  height: calc(100% - 60px);
+}
+
+.manage-nav {
+  width: 220px;
+  border-right: 1px solid #ddd;
+  padding: 16px;
+  background: #fafafa;
+}
+
+.manage-nav  {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.manage-nav button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.manage-nav button.active {
+  background: #eef2ff;
+  font-weight: bold;
+}
+
+.manage-content {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}

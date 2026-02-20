@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+bcrypt==4.3.0
+PyMySQL
+SQLAlchemy
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+PyJWT
+argon2_cffi
+email-validator
+pytz

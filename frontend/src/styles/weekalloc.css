@@ -1,0 +1,160 @@
+/* ===============================
+   Weekly Allocate – Layout CSS
+   =============================== */
+
+.weekly-allocate {
+  max-width: 1400px;      
+  margin: 0 auto;
+  padding-left : 20px; 
+  background: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.wa-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+
+.wa-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wa-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+}
+
+.wa-field select,
+.wa-field input {
+  height: 36px;
+  min-width: 160px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.wa-field select:focus,
+.wa-field input:focus {
+  outline: none;
+  border-color: #1f3a8a;
+  box-shadow: 0 0 0 2px rgba(31, 58, 138, 0.08);
+}
+
+.wa-field input[type="date"] {
+  width: 160px;
+}
+
+/* APPLY BUTTON */
+
+.wa-apply {
+  height: 36px;
+  padding: 0 18px;
+  
+  margin-right: 20px;
+  border-radius: 6px;
+  border: none;
+  background-color: #1f3a8a;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.wa-apply:hover {
+  background-color: #162d6a;
+}
+
+.wa-apply:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+   
+
+.refresh-btn {
+  height: 36px;
+  margin-left: auto;  
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  opacity: 0.9;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ---------- SCROLLABLE TABLE CONTAINER ---------- */
+
+.wa-table {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  position: relative;
+  padding: 12px;
+}
+
+
+.shift-table {
+  margin: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+
+.wa-table > * {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Scrollbar */
+.wa-table::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* ---------- ACTION BUTTON GROUPS ---------- */
+
+.wa-edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.wa-approve {
+  background: #2e7d32;
+  color: white;
+}
+
+/* ===============================
+   Mobile Safety
+   =============================== */
+
+@media (max-width: 900px) {
+  .wa-filters {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+
+  .wa-filters-left,
+  .wa-filters-center,
+  .wa-filters-right {
+    justify-self: stretch;
+  }
+
+  .wa-apply {
+    width: 100%;
+  }
+}
